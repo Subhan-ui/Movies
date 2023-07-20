@@ -1,0 +1,131 @@
+/* ul{
+    display: flex;
+    list-style: none;
+    margin: 12px;
+}
+.nav{
+    display: flex;
+    z-index: 5;
+    justify-content: space-between;
+ 
+    height: 70px;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    position: sticky;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: whitesmoke;
+ 
+  }
+  ul li{
+    
+    margin: auto 8px;
+  }
+  
+  
+  
+  .tooltip {
+    position: relative;
+    display: inline-block;
+ 
+  }
+  
+ 
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+  
+ 
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    left: 50%;
+    margin-left: -60px;
+  
+ 
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+ 
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: -5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+ 
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  #search{
+    height: 21px;
+    width: 225px;
+    border-radius: 7px;
+    background-color: transparent;
+  }
+  .input-icons i {
+    position: absolute;
+ 
+    margin-top: 5px;
+ 
+}
+  li a{
+    text-decoration: none;
+    color: black;
+    color: whitesmoke;
+  }
+  .input-icons {
+  color: black;
+    width: 100%;
+    margin-bottom: 10px;
+}
+  
+.icon {
+    padding: 10px;
+    min-width: 40px;
+}
+  
+.input-field {
+    width: 225px;
+    height: 13px;
+    margin-top: 5px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 7px;
+}
+@media only screen and (max-width: 450px){
+  li{
+    display: none;
+  }
+  li:first-child{
+    display:inline;
+  }
+  li:first-child:active{
+    display: inline
+  }
+} */
+.nav{
+  background-color: rgba(0, 0, 0, 0.5);
+  height:70px;
+  
+}
+.link{
+  color: whitesmoke;
+}
+.navbar-brand{
+  color: whitesmoke;
+
+}
