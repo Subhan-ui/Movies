@@ -1,42 +1,62 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import RealCard from "./RealCard";
+import UseHttp from "../../hooks/use-http";
 
-export default function Top({handleDetail}) {
-    const [data,setData]=useState([])
-    useEffect(()=>{
-        const options = {
-            method: 'GET',
-            headers: {
-              accept: 'application/json',
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzU3ZGNkMzNhYWYwZjVhNDAxMzQwMzMyNDQyMGQwZSIsInN1YiI6IjY0YWZjNjBiOGEwZTliMDBlMzc2OTcyZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._8BNHS-1ZrsChBsg2qElbUHw6XtfwlGtx4lhM48uO9U'
-            }
-          };
-          async function fetchMyAPI() {
-            let datas = await fetch('https://api.themoviedb.org/3/movie/top_rated',options)
-            let parsedData = await datas.json();
-            setData(parsedData.results)
-          }
-          fetchMyAPI();
-    })
+export default function Top({ handleDetail }) {
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    fetchMyAPI({
+      url: `https://api.themoviedb.org/3/movie/top_rated?page=${page}`,
+    });
+  }, [page]);
+
+  const { data, isLoading, fetchMyAPI } = UseHttp();
+
+  const handleNextPage = () => {
+    setPage((prev) => prev + 1);
+  };
+  const handlePrevPage = () => {
+    setPage((prev) => prev - 1);
+  };
+
   return (
-    <div className='Cards'>
-    {data.map((dat,index)=>{
-       return <div key={index} className="flip-card">
-    <div className="flip-card-inner">
-        <div style={{backgroundImage:`url(https://image.tmdb.org/t/p/w500${dat.poster_path})`,backgroundSize:'cover'}} className="flip-card-front">
-            
-        </div>
-        <div className="flip-card-back">
-            <p className="title">IMDB {dat.vote_average}</p>
-            <p className='genre'>Action</p>
-            <p className='genre'>Adventure</p>
-            <Link onClick={()=>handleDetail(dat.id)} to='/detail' className="button"> Details</Link>
-        </div>
-    </div>
-    <p className='movieTitle'>{dat.title}</p>
-</div>
+    <>
+      <div className="Cards">
+        {data.map((dat) => {
+          return (
+            <RealCard
+              key={dat.id}
+              title={dat.title}
+              id={dat.id}
+              poster={dat.poster_path}
+              handleDetail={handleDetail}
+              link="/detail"
+              isLoading={isLoading}
+              IMDB={dat.vote_average}
+            />
+          );
+        })}
+      </div>
 
-})}
-    </div>
-  )
+      <div className="buttons">
+        <button
+          onClick={handlePrevPage}
+          disabled={page === 1 ? true : false}
+          type="button"
+          className="btn btn-outline-light"
+        >
+          Previous
+        </button>
+        <p style={{ color: "white" }}>{page}</p>
+        <button
+          onClick={handleNextPage}
+          type="button"
+          className="btn btn-outline-light"
+        >
+          Next
+        </button>
+      </div>
+    </>
+  );
 }

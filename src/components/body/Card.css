@@ -132,3 +132,16 @@ body{
     margin-top: 65px;
     /* overflow-y: scroll; */
    }
+   .airing_today{
+    height: 30vw;
+    overflow-x: scroll;
+   }
+
+
+
+   .buttons{
+    display: flex;
+    justify-content: space-around;
+    margin: 23px;
+    margin-bottom: 0px;
+   }
